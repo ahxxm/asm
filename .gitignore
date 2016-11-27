@@ -1,4 +1,5 @@
-**/*.o
-**/*.out
-**/*.S
+*.o
+*.out
+*.S
 .gdb_history
+*.lst
