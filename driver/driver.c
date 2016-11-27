@@ -1,5 +1,5 @@
 /*
-  Under 64bit linux, install gcc and:
+  Under 64bit linux, install gcc-multilib and:
   nasm -f elf first.asm
   gcc -m32 -o first.out first.o driver.c ../inc/asm_io.o
 
