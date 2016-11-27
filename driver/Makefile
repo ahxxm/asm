@@ -10,4 +10,4 @@ clean:
 all: driver
 
 test:
-	./first.out
+	echo "1 2" | ./first.out
