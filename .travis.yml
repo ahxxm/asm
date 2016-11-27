@@ -1,0 +1,5 @@
+language: c
+sudo: false
+install: make get-deps nasm
+script:
+  - cd driver && make && make test
