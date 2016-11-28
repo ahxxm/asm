@@ -9,4 +9,5 @@ do
     make test
     make clean
     cd ..
+    echo ""
 done
