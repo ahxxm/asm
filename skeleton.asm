@@ -1,20 +1,17 @@
 %include "inc/asm_io.inc"
 
+;; standalone asm skeleton
+;; see driver/Makefile for compile and link instructions
 
-segment .data
 
-segment	.text
-    global      _asm_main		; only windows adds "_" prefix
+section	.text
+    global      main          ; standalone main
 
-_asm_main:
+main:
 
-    enter       0, 0
-    pusha
-
-    ;; code here
-    ;; code here
-
-    popa
-    mov         eax, 0
-    leave
-    ret
+    ;; show debug info
+    dump_regs   1
+    
+    ;; exit
+    mov         eax, 1
+    int         0x80
