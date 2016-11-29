@@ -11,7 +11,8 @@ main:
 
     ;; show debug info
     dump_regs   1
-    
+
     ;; exit
-    mov         eax, 1
+    mov         ebx, 0          ; exit code
+    mov         eax, 1          ; invoke
     int         0x80
