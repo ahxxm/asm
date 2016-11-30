@@ -5,6 +5,8 @@ section	.text
     global      main          ; standalone main
 
 main:
+loop:   
+    ;; Loop
     ;; sum 1 to 10 to eax
     xor         eax, eax
     mov         ecx, 10
@@ -14,6 +16,16 @@ loop_sum:
 after_sum:
     ;; eax == 0x37, 55
     dump_regs   1
+
+
+ifelse:
+    ;; if(a){b;} else{c;}
+    ;; translated:
+    ;; CMP a
+    ;; JXX c
+    ;; b
+    ;; c
+    
 cmp:    
     ;; CMP
     ;; r = eax - ebx is computed
