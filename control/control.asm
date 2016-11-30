@@ -5,10 +5,16 @@ section	.text
     global      main          ; standalone main
 
 main:
-    ;; cmp results are stored in FLAGS
+    ;; sum 1 to 10 to eax
     xor         eax, eax
-    xor         ebx, ebx
-    
+    mov         ecx, 10
+loop_sum:   
+    add         eax, ecx
+    loop        loop_sum      ; loop decreases ecx until 0
+after_sum:
+    ;; eax == 0x37, 55
+    dump_regs   1
+cmp:    
     ;; CMP
     ;; r = eax - ebx is computed
     ;; flags are set accordingly
@@ -21,6 +27,9 @@ main:
     ;; ZF, OF(overflow flag), SF(sign flag)
     ;; - r >  0: ZF unset, SF=OF
     ;; - r <  0: ZF unset, SF!=OF
+    ;; cmp results are stored in FLAGS
+    xor         eax, eax
+    xor         ebx, ebx
 
     ;; so after CMP, CF should be set
     ;; mov         eax, 2
@@ -38,3 +47,4 @@ exit0:
     mov         ebx, 0
     mov         eax, 1
     int         0x80
+
