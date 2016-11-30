@@ -8,12 +8,8 @@ main:
     ;; cmp results are stored in FLAGS
     xor         eax, eax
     xor         ebx, ebx
-    mov         eax, 2
-    mov         ebx, 3
-
-    cmp         eax, ebx
-    dump_regs   1
-
+    
+    ;; CMP
     ;; r = eax - ebx is computed
     ;; flags are set accordingly
     ;; - r == 0: ZF(zero flag) set
@@ -27,10 +23,15 @@ main:
     ;; - r <  0: ZF unset, SF!=OF
 
     ;; so after CMP, CF should be set
-    jc          exit0           ; jump when CF set
-    mov         ebx, 1          ; will never reach here
-    mov         eax, 1
-    int         0x80
+    ;; mov         eax, 2
+    ;; mov         ebx, 3
+    ;; dump_regs   1
+    ;; cmp         eax, ebx
+    ;; jc          exit0           ; jump when CF set
+    ;; mov         ebx, 1          ; will never reach here
+    ;; mov         eax, 1
+    ;; int         0x80
+
 
 exit0:
     ;; exit
