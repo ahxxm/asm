@@ -21,12 +21,18 @@ after_sum:
     dump_regs   1
     call        print_nl
 
-call_print: 
-    ;; call subroutine
+call_print_ecx: 
+    ;; call subroutine, calculate instruction pointer
+    ;; 7 is only for short jump
     mov         ecx, $+7        ; later instruction pointer
     jmp         short _print
     call        print_nl
 
+
+call_print_stack: 
+    ;; hardware stack
+
+    
     
 ifelse:
     ;; if(a){b;} else{c;}
