@@ -1,6 +1,9 @@
 %include "../inc/asm_io.inc"
 
-
+    
+section .data
+    msg         db      "Calling print subroutine", 0
+    
 section	.text
     global      main          ; standalone main
 
@@ -16,8 +19,15 @@ loop_sum:
 after_sum:
     ;; eax == 0x37, 55
     dump_regs   1
+    call        print_nl
 
+call_print: 
+    ;; call subroutine
+    mov         ecx, $+7        ; later instruction pointer
+    jmp         short _print
+    call        print_nl
 
+    
 ifelse:
     ;; if(a){b;} else{c;}
     ;; translated:
@@ -44,14 +54,15 @@ cmp:
     xor         ebx, ebx
 
     ;; so after CMP, CF should be set
-    ;; mov         eax, 2
-    ;; mov         ebx, 3
-    ;; dump_regs   1
-    ;; cmp         eax, ebx
-    ;; jc          exit0           ; jump when CF set
-    ;; mov         ebx, 1          ; will never reach here
-    ;; mov         eax, 1
-    ;; int         0x80
+    mov         eax, 2
+    mov         ebx, 3
+    dump_regs   1
+    call        print_nl
+    cmp         eax, ebx
+    jc          exit0           ; jump when CF set
+    mov         ebx, 1          ; will never reach here
+    mov         eax, 1
+    int         0x80
 
 
 exit0:
@@ -60,3 +71,10 @@ exit0:
     mov         eax, 1
     int         0x80
 
+_print:
+    ;; subroutine put after the end of main
+    ;; ecx is origin instruction pointer
+    mov         eax, msg
+    call        print_string
+    call        print_nl
+    jmp         ecx
