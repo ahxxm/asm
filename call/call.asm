@@ -43,6 +43,8 @@ ebp_convention_text:
     call       ebp_convention
 
 param_convention:
+    ;; in C it's callee to keep stack consistent,
+    ;; because function params may vary
     push       dword 1          ; pass 1 as param
     call       ebp_convention
     add        esp, 4           ; remove param from stack
