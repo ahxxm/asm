@@ -16,6 +16,8 @@ main:
     pop         ecx
     dump_regs   1
 
+    ;; PUSHA stores many registers, POPA restore them
+
 exit0:
     ;; exit
     mov         ebx, 0
