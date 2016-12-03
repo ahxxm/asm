@@ -21,7 +21,7 @@ main:
 call_ret:   
     ;; CALL: push next instruction to stack, then unconditional jump
     ;; RET: pop top of the stack and jump to it
-    call sample_call
+    call        sample_call
 
     ;; convention: subroutine that are reentrant->safe to call at anywhere
     
@@ -35,12 +35,17 @@ call_ret:
     ;; void fun(int a, int b, int c){}
 
     
-ebp_convention:
+ebp_convention_text:
     ;; EBP: base pointer, reference data on the stack.
     ;; - save value of EBP on the stack
     ;; - set EBP to equal to ESP
     ;; this way ESP can be changed, and restore EBP to ESP when subroutine ends
-    call sample_ebp
+    call       ebp_convention
+
+param_convention:
+    push       dword 1          ; pass 1 as param
+    call       ebp_convention
+    add        esp, 4           ; remove param from stack
     
 exit0:
     ;; exit
