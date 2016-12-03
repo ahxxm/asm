@@ -28,14 +28,19 @@ call_ret:
     ;; params are not popped off, instead they are accessed from stack
     ;; pass address to change params
 
-    ;; EBP: base pointer, reference data on the stack
-    
     ;; low              stack    high
     ;; subroutine data  esp      params
 
     ;; push params:
     ;; void fun(int a, int b, int c){}
-    ;; 
+
+    
+ebp_convention:
+    ;; EBP: base pointer, reference data on the stack.
+    ;; - save value of EBP on the stack
+    ;; - set EBP to equal to ESP
+    ;; this way ESP can be changed, and restore EBP to ESP when subroutine ends
+    call sample_ebp
     
 exit0:
     ;; exit
@@ -47,3 +52,11 @@ exit0:
 sample_call:
     call print_nl
     ret
+
+ebp_convention: 
+    push        ebp             ; save origin ebp
+    mov         ebp, esp
+    ;; something here
+    pop         ebp
+    ret
+    
