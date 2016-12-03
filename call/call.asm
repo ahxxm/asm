@@ -65,7 +65,7 @@ subprogram_label:
     ;; end code
     mov        esp, ebp         ; deallocate locals
     pop        ebp              ; restore origin ebp
-
+    
     
 exit0:
     ;; exit
@@ -80,8 +80,8 @@ sample_call:
 
 ebp_convention: 
     push        ebp             ; save origin ebp
-    mov         ebp, esp
+    mov         ebp, esp        ;
+    ;; sub esp, xx ; make room 
     ;; something here
     pop         ebp
     ret
-    
