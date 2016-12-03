@@ -34,6 +34,12 @@ call_ret:
     ;; push params:
     ;; void fun(int a, int b, int c){}
 
+
+    ;; simplified but slow instructions for: push sub pop ret
+    ;; enter x, 0
+    ;; leave
+    ;; - x: reserve x bytes for local
+
     
 ebp_convention_text:
     ;; EBP: base pointer, reference data on the stack.
@@ -48,6 +54,18 @@ param_convention:
     push       dword 1          ; pass 1 as param
     call       ebp_convention
     add        esp, 4           ; remove param from stack
+
+subprogram_label:
+    push       ebp              ; save ebp
+    mov        ebp, esp
+    sub        esp, 0           ; save bytes for locals
+
+    ;; code here
+
+    ;; end code
+    mov        esp, ebp         ; deallocate locals
+    pop        ebp              ; restore origin ebp
+
     
 exit0:
     ;; exit
