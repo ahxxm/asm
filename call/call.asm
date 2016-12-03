@@ -18,9 +18,32 @@ main:
 
     ;; PUSHA stores many registers, POPA restore them
 
+call_ret:   
+    ;; CALL: push next instruction to stack, then unconditional jump
+    ;; RET: pop top of the stack and jump to it
+    call sample_call
+
+    ;; convention: subroutine that are reentrant->safe to call at anywhere
+    
+    ;; params are not popped off, instead they are accessed from stack
+    ;; pass address to change params
+
+    ;; EBP: base pointer, reference data on the stack
+    
+    ;; low              stack    high
+    ;; subroutine data  esp      params
+
+    ;; push params:
+    ;; void fun(int a, int b, int c){}
+    ;; 
+    
 exit0:
     ;; exit
     mov         ebx, 0
     mov         eax, 1
     int         0x80
 
+
+sample_call:
+    call print_nl
+    ret
