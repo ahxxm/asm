@@ -2,7 +2,7 @@
 
 set -e
 
-for f in "hello" "driver" "extend" "control" "bit"
+for f in "hello" "driver" "extend" "control" "bit" "call" "multimodule"
 do
     cd "$f"
     make
