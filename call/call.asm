@@ -18,13 +18,13 @@ main:
 
     ;; PUSHA stores many registers, POPA restore them
 
-call_ret:   
+call_ret:
     ;; CALL: push next instruction to stack, then unconditional jump
     ;; RET: pop top of the stack and jump to it
     call        sample_call
 
     ;; convention: subroutine that are reentrant->safe to call at anywhere
-    
+
     ;; params are not popped off, instead they are accessed from stack
     ;; pass address to change params
 
@@ -40,7 +40,7 @@ call_ret:
     ;; leave
     ;; - x: reserve x bytes for local
 
-    
+
 ebp_convention_text:
     ;; EBP: base pointer, reference data on the stack.
     ;; - save value of EBP on the stack
@@ -51,6 +51,9 @@ ebp_convention_text:
 param_convention:
     ;; in C it's callee to keep stack consistent,
     ;; because function params may vary
+
+    ;; args are pushed into stack in REVERSE order
+    ;; that they appear in function call
     push       dword 1          ; pass 1 as param
     call       ebp_convention
     add        esp, 4           ; remove param from stack
@@ -65,8 +68,8 @@ subprogram_label:
     ;; end code
     mov        esp, ebp         ; deallocate locals
     pop        ebp              ; restore origin ebp
-    
-    
+
+
 exit0:
     ;; exit
     mov         ebx, 0
@@ -78,10 +81,10 @@ sample_call:
     call print_nl
     ret
 
-ebp_convention: 
+ebp_convention:
     push        ebp             ; save origin ebp
     mov         ebp, esp        ;
-    ;; sub esp, xx ; make room 
+    ;; sub esp, xx ; make room
     ;; something here
     pop         ebp
     ret
