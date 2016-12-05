@@ -2,11 +2,12 @@
 
 
 section	.text
-    global      calc_sum
+    global      calc_sum, sum_int
 
 calc_sum:
     ;; sum at [ebp-4]
     ;; sum from 1 to N
+    ;; store to int
     enter       4, 0            ; reserve for room on stack
     push        ebx             ; important: convention requires EBX unmodified
 
@@ -35,5 +36,32 @@ end_for:
     dump_stack  1, 2, 4
 
     pop         ebx             ; restore ebx
+    leave
+    ret
+
+
+sum_int:
+    ;; sum to N and store to eax
+    enter       4, 0
+    push        ebx
+    mov         dword [ebp-4], 0 ; clean sum
+    mov         ecx, 1
+    dump_stack  1, 2, 3
+sum_loop:
+    ;; because grows from high to low
+    ;; ebp+12: param2(exists above)
+    ;; ebp+8: param 1
+    ;; ebp: return address
+    ;; ebp-4: local vars
+    cmp         ecx, [ebp+8]
+    jnle        sum_end
+    add         [ebp-4], ecx
+    inc         ecx
+    jmp         short sum_loop
+sum_end:
+    mov         eax, [ebp-4]
+    dump_stack  1, 2, 3
+
+    pop         ebx
     leave
     ret
