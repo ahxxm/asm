@@ -8,10 +8,15 @@ calc_sum:
     ;; sum at [ebp-4]
     ;; sum from 1 to N
     enter       4, 0            ; reserve for room on stack
-    push        ebx
+    push        ebx             ; important: convention requires EBX unmodified
 
     mov         dword [ebp-4], 0 ; clean sum
-    dump_stack  1, 2, 4          ; print from ebp-8 to ebp+16
+
+    ;; print from ebp-8 to ebp+16.
+    ;; 1: label
+    ;; 2, 4: how many dword to display, below and above EBP respectively
+    dump_stack  1, 2, 4
+
     mov         ecx, 1           ; i
 
 loop:
@@ -27,6 +32,7 @@ end_for:
     mov         ebx, [ebp+12]   ; ebx = sump
     mov         eax, [ebp-4]    ; eax = sum
     mov         [ebx], eax      ; *ebx = eax
+    dump_stack  1, 2, 4
 
     pop         ebx             ; restore ebx
     leave
