@@ -8,6 +8,10 @@ a3      times 10 db 0
         times 10 db 1           ; 10 * 0 + 10 * 1, bytes
 
 
+section .bss
+a4      resd 10                 ; declare array of 10 unitialized dwords
+
+
 section	.text
     global      main          ; standalone main
 
