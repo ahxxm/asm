@@ -3,3 +3,4 @@
 *.S
 .gdb_history
 *.lst
+*.txt
