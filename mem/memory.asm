@@ -20,7 +20,9 @@ asm_copy:
     mov         edi, dest       ;
     mov         ecx, sz
 
-    cld                         ; FIXME:
+    ;; cld: clear direction, string process from low to high, auto-increment mode
+    ;; std: set direction flag, vice versa
+    cld                         ; Clear direction
     rep         movsb           ; execute MOVSB ECX times
 
     pop         edi
