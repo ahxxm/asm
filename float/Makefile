@@ -4,7 +4,7 @@ all:
 	gcc -m32 -o quad.out quad.o quad.c ../inc/asm_io.o
 
 test:
-	echo "1 4 4" | ./quad.out
+	echo "1 0 -2" | ./quad.out
 
 clean:
 	rm *.o *.out
