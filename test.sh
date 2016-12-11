@@ -4,10 +4,14 @@ set -e
 
 for f in $(ls -d */)
 do
-    cd "$f"
-    make
-    make test
-    make clean
-    cd ..
-    echo ""
+    if [ "$f" != "inc/" ];
+    then
+       echo "$f"
+       cd "$f"
+       make
+       make test
+       make clean
+       cd ..
+       echo ""
+    fi
 done
