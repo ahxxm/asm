@@ -13,7 +13,7 @@ extern void find_primes(int *arr, unsigned n);
 
 int main(void) {
   unsigned i;
-  unsigned n = 5;
+  unsigned n = 20;
   int *a;
 
   // printf("How many primes to be found?");
@@ -22,7 +22,6 @@ int main(void) {
 
 
   // find and print last 20
-  // FIXME: not working
   find_primes(a, n);
   for(i = (n > 20) ? n - 20 : 0; i < n; i++) {
     printf("Prime No.%3d: [%d]\n", i+1, a[i]);

@@ -60,7 +60,7 @@ while_factor:
 ;;; found a new one!
 quit_factor_prime:
     mov         eax, [n]
-    mov         dword [esi+4*ecx], ebx ; add guess to end of array
+    mov         dword [esi+4*eax], ebx ; add guess to end of array
     inc         eax
     mov         [n], eax        ; inc n, len(array)
 
