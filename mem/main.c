@@ -20,7 +20,7 @@ int main(void) {
   printf("Copied to st2: %s\n", st2);
 
   printf("Enter a char: "); // looking for this byte in string
-  scanf("%c%*[^\n]", &ch); // FIXME: strip?
+  scanf("%c%*[^\n]", &ch); // scan first char
   st = asm_find(st2, ch, STR_SIZE);
 
   if(st) {
