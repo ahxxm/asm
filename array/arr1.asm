@@ -54,12 +54,14 @@ prompt_loop:
     call        printf
     pop         ecx
 
-
     ;; lea explained
     ;; lea ebx, [4*eax+eax] ; stores value of 5*eax to ebx
     ;; faster and easier than using MUL
     ;; [xxx]: xxx must be legal indirect address
-    ;; FIXME: wat?
+
+    ;; in this case ebx is arr*, lea statement
+    ;; let eax points to local_dw
+    ;; then `scanf(format, eax)`
     lea         eax, [ebp-4]    ; eax = &local_dw
     push        eax
     push        dword InputFormat
