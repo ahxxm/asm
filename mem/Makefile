@@ -1,6 +1,6 @@
 all:
 	nasm -f elf -d ELF_TYPE ../inc/asm_io.asm
-	nasm -f elf memory.asm
+	nasm -w+all -f elf memory.asm
 	gcc -m32 -o mem.out memory.o main.c ../inc/asm_io.o
 
 test:
