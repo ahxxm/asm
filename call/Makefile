@@ -1,6 +1,6 @@
 all:
 	nasm -f elf -d ELF_TYPE ../inc/asm_io.asm
-	nasm -f elf call.asm
+	nasm -w+all -f elf call.asm
 	gcc -m32 -o call.out call.o ../inc/asm_io.o
 
 test:

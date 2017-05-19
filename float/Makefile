@@ -1,9 +1,9 @@
 all:
 	nasm -f elf -d ELF_TYPE ../inc/asm_io.asm
-	nasm -f elf quad.asm
+	nasm -w+all -f elf quad.asm
 	gcc -m32 -o quad.out quad.o quad.c ../inc/asm_io.o
 
-	nasm -f elf prime.asm
+	nasm -w+all -f elf prime.asm
 	gcc -m32 -o prime.out prime.o prime.c ../inc/asm_io.o
 
 test:

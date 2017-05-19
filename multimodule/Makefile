@@ -1,7 +1,7 @@
 all:
-	nasm -f elf -d ELF_TYPE ../inc/asm_io.asm
-	nasm -f elf multi.asm
-	nasm -f elf sum.asm
+	nasm -w+all -w+error -f elf -d ELF_TYPE ../inc/asm_io.asm
+	nasm -w+all -f elf multi.asm
+	nasm -w+all -f elf sum.asm
 	gcc -m32 -o multi.out multi.o sum.o ../inc/asm_io.o
 
 test:
